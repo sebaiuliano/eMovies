@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.siuliano.emovies.ui.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="@string/detail_fragment"
         tools:layout="@layout/fragment_detail"
         />
 </navigation>

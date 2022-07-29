@@ -19,19 +19,24 @@ data class Movie(
     val title: String,
 )
 
+@JsonClass(generateAdapter = true)
 data class PaginatedMovieList(
     val page: Int,
-    val results: List<Movie>
+    val results: List<MovieMinimalData>
 )
 
-data class MovieDTO(
+@JsonClass(generateAdapter = true)
+data class MovieMinimalData(
     val id: Int,
     val genres: List<Int>,
     val title: String,
     @Json(name = "release_date")
     val releaseDate: String,
+    @Json(name = "poster_path")
+    val posterPath: String
 )
 
+@JsonClass(generateAdapter = true)
 data class Genre(
     val id: Int,
     val name: String

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="regular_padding">16dp</dimen>
+    <dimen name="one_and_half_padding">24dp</dimen>
+    <dimen name="double_padding">32dp</dimen>
+    <dimen name="half_padding">8dp</dimen>
+    <dimen name="quarter_padding">4dp</dimen>
+    <dimen name="eighth_padding">2dp</dimen>
+    <dimen name="sixteenth_padding">1dp</dimen>
+
+    <dimen name="card_border_radius">4dp</dimen>
+</resources>

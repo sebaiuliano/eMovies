@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentHomeBinding
 import com.siuliano.emovies.ui.main.MainViewModel
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
@@ -24,11 +26,23 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        Timber.d("ONCREATE HOME FRAGMENT")
+        setObservers()
+        viewModel.fetchConfiguration()
+
         binding.btn.setOnClickListener {
-            viewModel.select(278)
+            findNavController().navigate(R.id.detailFragment)
+            viewModel.select(152601)
         }
+
         return binding.root
+    }
+
+    private fun setObservers() {
+        viewModel.fetchConfigurationLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                viewModel.fetchConfigurationLiveData.value = false
+            }
+        }
     }
 
 //    companion object {
