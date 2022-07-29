@@ -3,7 +3,7 @@ package com.siuliano.emovies.ui.main
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.siuliano.emovies.model.Movie
+import com.siuliano.emovies.model.movie.Movie
 import com.siuliano.emovies.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

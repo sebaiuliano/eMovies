@@ -1,8 +1,10 @@
 package com.siuliano.emovies.network.endpoint
 
 import com.siuliano.emovies.BuildConfig
-import com.siuliano.emovies.model.Movie
-import com.siuliano.emovies.model.PaginatedMovieList
+import com.siuliano.emovies.model.configuration.Configuration
+import com.siuliano.emovies.model.configuration.ConfigurationDTO
+import com.siuliano.emovies.model.movie.Movie
+import com.siuliano.emovies.model.movie.PaginatedMovieList
 import com.siuliano.emovies.utils.DateUtils
 import retrofit2.Response
 import retrofit2.http.GET
@@ -10,6 +12,12 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TMDbApi {
+
+    @GET("/3/configuration")
+    suspend fun getConfiguration(
+        @Query("api_key")
+        apiKey: String = BuildConfig.API_KEY
+    ): Response<ConfigurationDTO>
 
     @GET("/3/movie/top_rated")
     suspend fun getTopRatedMovies(

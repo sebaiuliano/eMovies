@@ -17,3 +17,7 @@ object DateUtils {
         SimpleDateFormat(format, Locale.getDefault()).format(getTomorrowDate())
 
 }
+
+object StringUtils {
+    fun String.extractNumbersToInt() = this.filter { character -> character.isDigit() }.toIntOrNull() ?: 0
+}
