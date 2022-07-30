@@ -21,3 +21,7 @@ object DateUtils {
 object StringUtils {
     fun String.extractNumbersToInt() = this.filter { character -> character.isDigit() }.toIntOrNull() ?: 0
 }
+
+object DoubleUtils {
+    fun Double.toStringWithDecimals(decimalPlaces: Int = 2) = String.format("%.$decimalPlaces", this)
+}

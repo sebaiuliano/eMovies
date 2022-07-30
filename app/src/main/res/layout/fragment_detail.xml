@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.detail.DetailFragment"
+        android:theme="@style/Theme.EMovies.Detail"
         >
 
         <include
@@ -46,7 +47,7 @@
             android:id="@+id/layout_data"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/guideline_content_top"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             />
@@ -72,7 +73,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/guideline_bottom"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8"
+            app:layout_constraintGuide_percent="0.5"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

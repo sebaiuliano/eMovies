@@ -9,6 +9,8 @@
     <color name="black_75">#BF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="grey">#8E8E8E</color>
+
     <color name="white_40">#66FFFFFF</color>
     <color name="white_80">#CCFFFFFF</color>
     <color name="card_rating_background">#F6C700</color>

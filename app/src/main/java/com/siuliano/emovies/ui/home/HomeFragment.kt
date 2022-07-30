@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentHomeBinding
+import com.siuliano.emovies.extensions.showToolbar
+import com.siuliano.emovies.ui.main.MainActivity
 import com.siuliano.emovies.ui.main.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -28,11 +33,13 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setObservers()
         viewModel.fetchConfiguration()
-
-        binding.btn.setOnClickListener {
-            findNavController().navigate(R.id.detailFragment)
-            viewModel.select(152601)
-        }
+        showToolbar(false)
+//        binding.btn.setOnClickListener {
+//            findNavController().navigate(R.id.detailFragment)
+        //TODO change this
+//            viewModel.select(152601)
+//        }
+        setFilterButtons()
 
         return binding.root
     }
@@ -45,8 +52,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    companion object {
-//        @JvmStatic
-//        fun newInstance() = HomeFragment()
-//    }
+    private fun setFilterButtons() {
+
+        binding.buttonFilterLanguage.text = resources.getString(R.id.button_filter_language, Locale.getDefault().displayLanguage)
+        binding.buttonFilterYear.text =
+    }
 }

@@ -12,15 +12,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment"
+        android:paddingStart="@dimen/one_and_half_padding"
+        tools:ignore="RtlSymmetry"
+        android:background="@color/black"
         >
 
-        <Button
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_logo"
+            />
+
+        <include
+            layout="@layout/layout_category"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/double_padding"
+            android:id="@+id/category_upcoming"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo"
+            />
+
+        <include
+            layout="@layout/layout_category"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/one_and_half_padding"
+            android:id="@+id/category_top_rated"
+            app:layout_constraintTop_toBottomOf="@id/category_upcoming"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_category_recommended"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category_top_rated"
+            android:layout_marginTop="@dimen/regular_padding"
+            />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg_filters"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_recommended"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_filter_language"
+                android:background="@drawable/button_state_background"
+                android:button="@null"
+                android:checked="true"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_filter_year"
+                android:background="@drawable/button_state_background"
+                android:button="@null"
+                />
+        </RadioGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn"
-            android:text="SELECT MOVIE"
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/rv_category_recommended"
+            app:layout_constraintTop_toBottomOf="@id/rg_filters"
+            android:layout_marginEnd="@dimen/one_and_half_padding"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
