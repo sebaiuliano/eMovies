@@ -2,9 +2,11 @@ package com.siuliano.emovies.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.siuliano.emovies.databinding.ItemMovieBinding
+import com.siuliano.emovies.model.movie.Movie
 import com.siuliano.emovies.model.movie.MovieMinimalData
 import com.siuliano.emovies.utils.StringUtils
 
@@ -26,8 +28,11 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
     }
 
     fun setMovies(movies: List<MovieMinimalData>) {
+        val oldList = movieList
         movieList = movies
-        notifyDataSetChanged()
+        DiffUtil
+            .calculateDiff(MovieDiffCallback(oldList, movieList))
+            .dispatchUpdatesTo(this)
     }
 }
 
@@ -41,4 +46,23 @@ class MovieViewHolder(
                 .into(binding.ivMovie)
         }
     }
+}
+
+class MovieDiffCallback(
+    private val oldList: List<MovieMinimalData>,
+    private val newList: List<MovieMinimalData>
+): DiffUtil.Callback() {
+
+    override fun getOldListSize() = oldList.size
+
+
+    override fun getNewListSize() = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        oldList[oldItemPosition].id == newList[newItemPosition].id
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        oldList[oldItemPosition] == newList[newItemPosition]
+
+
 }

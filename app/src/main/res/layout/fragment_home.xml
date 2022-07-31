@@ -45,7 +45,7 @@
                 layout="@layout/layout_category"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/one_and_half_padding"
+                android:layout_marginTop="@dimen/half_padding"
                 android:id="@+id/category_top_rated"
                 app:layout_constraintTop_toBottomOf="@id/category_upcoming"
                 />
@@ -58,7 +58,6 @@
                 style="@style/HeaderStyle.MediumText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/category_top_rated"
-                android:layout_marginTop="@dimen/regular_padding"
                 />
 
             <com.google.android.material.button.MaterialButtonToggleGroup

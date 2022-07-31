@@ -25,7 +25,9 @@ data class Movie(
 @JsonClass(generateAdapter = true)
 data class PaginatedMovieList(
     val page: Int,
-    val results: List<MovieMinimalData>
+    val results: List<MovieMinimalData>,
+    @Json(name = "total_pages")
+    val totalPages: Int
 )
 
 @JsonClass(generateAdapter = true)

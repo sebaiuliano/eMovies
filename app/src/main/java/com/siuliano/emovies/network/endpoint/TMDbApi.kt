@@ -22,7 +22,9 @@ interface TMDbApi {
     @GET("/3/movie/top_rated")
     suspend fun getTopRatedMovies(
         @Query("api_key")
-        apiKey: String = BuildConfig.API_KEY
+        apiKey: String = BuildConfig.API_KEY,
+        @Query("page")
+        page: Int = 1
     ): Response<PaginatedMovieList>
 
     @GET("/3/discover/movie")
@@ -33,6 +35,26 @@ interface TMDbApi {
         sortBy: String = "primary_release_date.asc",
         @Query("primary_release_date.gte")
         tomorrow: String = DateUtils.getTomorrowDate()
+    ): Response<PaginatedMovieList>
+
+    @GET("/3/discover/movie")
+    suspend fun getRecommendedMoviesByYear(
+        @Query("api_key")
+        apiKey: String = BuildConfig.API_KEY,
+        @Query("sort_by")
+        sortBy: String = "popularity.desc",
+        @Query("primary_release_year")
+        year: Int
+    ): Response<PaginatedMovieList>
+
+    @GET("/3/discover/movie")
+    suspend fun getRecommendedMoviesByLanguage(
+        @Query("api_key")
+        apiKey: String = BuildConfig.API_KEY,
+        @Query("sort_by")
+        sortBy: String = "popularity.desc",
+        @Query("language")
+        language: String
     ): Response<PaginatedMovieList>
 
     @GET("/3/movie/{movieId}")

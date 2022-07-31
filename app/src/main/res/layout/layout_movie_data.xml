@@ -71,14 +71,14 @@
                 android:backgroundTint="@color/card_rating_background"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="@dimen/half_padding"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/black"
                 app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
-                android:drawableTint="?attr/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="@id/tv_movie_language"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_movie_language"
                 app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
                 tools:text="8.0"
+                app:drawableTint="@color/black"
                 />
 
             <TextView

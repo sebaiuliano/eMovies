@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentSplashBinding
+import com.siuliano.emovies.extensions.showToolbar
 import com.siuliano.emovies.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -26,6 +27,7 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
+        showToolbar(false)
         animateSplash()
         setObservers()
         viewModel.getInitialData()

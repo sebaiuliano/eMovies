@@ -10,6 +10,8 @@ interface MovieRepository {
     suspend fun fetchConfiguration()
     suspend fun getTopRatedMovies(): List<MovieMinimalData>
     suspend fun getUpcomingMovies(): List<MovieMinimalData>
+    suspend fun getMoviesByLanguage(language: String): List<MovieMinimalData>
+    suspend fun getMoviesByReleaseYear(year: Int): List<MovieMinimalData>
     suspend fun getMovieDetails(movieId: Int): Movie?
 }
 
@@ -27,15 +29,30 @@ class MovieRepositoryImpl(
     }
 
     override suspend fun getTopRatedMovies(): List<MovieMinimalData> {
-        return tmdbApi.getTopRatedMovies().body()?.results.orEmpty()
+        val list: MutableList<MovieMinimalData> = mutableListOf()
+        val response = tmdbApi.getTopRatedMovies().body()
+        if (response != null) {
+            list.addAll(response.results)
+            for (i in (response.page + 1)..10) {
+                list.addAll(tmdbApi.getTopRatedMovies(page = i).body()?.results ?: emptyList())
+            }
+        }
+        return list
     }
 
     override suspend fun getUpcomingMovies(): List<MovieMinimalData> {
         return tmdbApi.getUpcomingMovies().body()?.results.orEmpty()
     }
 
+    override suspend fun getMoviesByLanguage(language: String): List<MovieMinimalData> {
+        return tmdbApi.getRecommendedMoviesByLanguage(language = language).body()?.results.orEmpty()
+    }
+
+    override suspend fun getMoviesByReleaseYear(year: Int): List<MovieMinimalData> {
+        return tmdbApi.getRecommendedMoviesByYear(year = year).body()?.results.orEmpty()
+    }
+
     override suspend fun getMovieDetails(movieId: Int): Movie? {
-        //TODO perhaps throw an exception if movie is null?
         return tmdbApi.getMovieDetails(movieId = movieId).body()
     }
 

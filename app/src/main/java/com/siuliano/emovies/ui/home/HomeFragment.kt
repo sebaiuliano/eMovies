@@ -9,10 +9,13 @@ import androidx.databinding.DataBindingUtil
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentHomeBinding
 import com.siuliano.emovies.extensions.showToolbar
+import com.siuliano.emovies.model.catalog.Filters
 import com.siuliano.emovies.ui.base.MoviesAdapter
 import com.siuliano.emovies.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
+
+const val RECOMMENDED_MOVIES_QUANTITY = 6
 
 class HomeFragment : Fragment() {
 
@@ -26,8 +29,8 @@ class HomeFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setObservers()
-        initializeRecyclerViews()
         showToolbar(false)
+        viewModel.selectRecommendation(Filters.LANGUAGE)
 //        binding.btn.setOnClickListener {
 //            findNavController().navigate(R.id.detailFragment)
         //TODO change this
@@ -39,13 +42,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun setObservers() {
-
+        viewModel.liveDataMerger.observe(viewLifecycleOwner) {
+            initializeRecyclerViews()
+        }
     }
 
     private fun setFilterButtons() {
-//        binding.btnFilterLanguage.text = resources.getString(R.string.movie_language_filter, Locale.getDefault().displayLanguage)
-        //TODO add some logic here
-//        binding.btnFilterYear.text = resources.getString(R.string.movie_year_filter, 1993)
+        binding.btnFilterLanguage.text = resources.getString(R.string.movie_language_filter, Locale.getDefault().displayLanguage)
+        binding.btnFilterYear.text = resources.getString(R.string.movie_year_filter, 1993)
+        binding.groupFilters.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            when(group.checkedButtonId) {
+                R.id.btn_filter_language -> {
+                    viewModel.selectRecommendation(Filters.LANGUAGE)
+                }
+                R.id.btn_filter_year -> {
+                    viewModel.selectRecommendation(Filters.YEAR)
+                }
+            }
+        }
     }
 
     private fun initializeRecyclerViews() {
@@ -69,7 +83,6 @@ class HomeFragment : Fragment() {
     private fun initializeRecommended() {
         val adapter = MoviesAdapter()
         binding.rvCategoryRecommended.adapter = adapter
-        //TODO filter logic
-        adapter.setMovies(viewModel.topRatedMovies.filter { it.releaseDate.startsWith("1993") })
+        adapter.setMovies(viewModel.recommendedMovies.take(RECOMMENDED_MOVIES_QUANTITY))
     }
 }

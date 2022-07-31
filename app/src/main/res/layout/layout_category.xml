@@ -18,7 +18,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="181dp"
         android:id="@+id/rv_movies"
         app:layout_constraintTop_toBottomOf="@id/tv_category_title"
         android:layout_marginTop="@dimen/regular_padding"
