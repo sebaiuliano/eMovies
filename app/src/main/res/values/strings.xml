@@ -2,6 +2,7 @@
     <string name="app_name">eMovies</string>
     <string name="home_fragment">Home Fragment</string>
     <string name="detail_fragment">Detail Fragment</string>
+    <string name="hello_blank_fragment">Splash Fragment</string>
 
     <string name="upcoming">Próximos estrenos</string>
     <string name="top_rated">Tendencia</string>
@@ -11,4 +12,5 @@
 
     <string name="movie_language_filter">En %1$s</string>
     <string name="movie_year_filter">Lanzadas en %1$d</string>
+
 </resources>

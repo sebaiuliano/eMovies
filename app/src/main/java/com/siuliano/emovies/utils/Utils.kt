@@ -1,5 +1,6 @@
 package com.siuliano.emovies.utils
 
+import com.siuliano.emovies.model.configuration.Configuration
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,6 +21,9 @@ object DateUtils {
 
 object StringUtils {
     fun String.extractNumbersToInt() = this.filter { character -> character.isDigit() }.toIntOrNull() ?: 0
+    fun getThumbnailUrl(path: String) = getImageUrl(Configuration.smallSize, path)
+    fun getPosterUrl(path: String) = getImageUrl(Configuration.largeSize, path)
+    private fun getImageUrl(size: String, path: String) = "${Configuration.secureBaseUrl}/$size/$path"
 }
 
 object DoubleUtils {

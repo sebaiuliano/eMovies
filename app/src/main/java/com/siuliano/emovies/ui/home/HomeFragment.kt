@@ -6,18 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.fragment.findNavController
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentHomeBinding
 import com.siuliano.emovies.extensions.showToolbar
-import com.siuliano.emovies.ui.main.MainActivity
+import com.siuliano.emovies.ui.base.MoviesAdapter
 import com.siuliano.emovies.ui.main.MainViewModel
-import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import timber.log.Timber
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -32,7 +26,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setObservers()
-        viewModel.fetchConfiguration()
+        initializeRecyclerViews()
         showToolbar(false)
 //        binding.btn.setOnClickListener {
 //            findNavController().navigate(R.id.detailFragment)
@@ -45,16 +39,37 @@ class HomeFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.fetchConfigurationLiveData.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.fetchConfigurationLiveData.value = false
-            }
-        }
+
     }
 
     private fun setFilterButtons() {
+//        binding.btnFilterLanguage.text = resources.getString(R.string.movie_language_filter, Locale.getDefault().displayLanguage)
+        //TODO add some logic here
+//        binding.btnFilterYear.text = resources.getString(R.string.movie_year_filter, 1993)
+    }
 
-        binding.buttonFilterLanguage.text = resources.getString(R.id.button_filter_language, Locale.getDefault().displayLanguage)
-        binding.buttonFilterYear.text =
+    private fun initializeRecyclerViews() {
+        initializeUpcoming()
+        initializeTopRated()
+        initializeRecommended()
+    }
+
+    private fun initializeTopRated() {
+        val adapter = MoviesAdapter()
+        binding.categoryTopRated.tvCategoryTitle.text = resources.getString(R.string.top_rated)
+        binding.categoryTopRated.rvMovies.adapter = adapter
+        adapter.setMovies(viewModel.topRatedMovies)
+    }
+    private fun initializeUpcoming() {
+        val adapter = MoviesAdapter()
+        binding.categoryUpcoming.tvCategoryTitle.text = resources.getString(R.string.upcoming)
+        binding.categoryUpcoming.rvMovies.adapter = adapter
+        adapter.setMovies(viewModel.upcomingMovies)
+    }
+    private fun initializeRecommended() {
+        val adapter = MoviesAdapter()
+        binding.rvCategoryRecommended.adapter = adapter
+        //TODO filter logic
+        adapter.setMovies(viewModel.topRatedMovies.filter { it.releaseDate.startsWith("1993") })
     }
 }

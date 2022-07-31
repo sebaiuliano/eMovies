@@ -1,128 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:behavior_fitToContents="true"
-        app:behavior_peekHeight="@dimen/bottomsheet_peek_height"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         >
 
-        <TextView
-            android:id="@+id/tv_movie_title"
-            style="@style/HeaderStyle.LargeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Her"
-            />
-
-        <TextView
-            android:id="@+id/tv_movie_year"
-            style="@style/BodyStyle.SmallText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/quarter_padding"
-            android:background="@drawable/card_background"
-            android:paddingHorizontal="@dimen/half_padding"
-            android:paddingVertical="@dimen/quarter_padding"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toStartOf="@id/tv_movie_language"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
-            tools:text="2013"
-            />
-
-        <TextView
-            android:id="@+id/tv_movie_language"
-            style="@style/BodyStyle.SmallText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/quarter_padding"
-            android:background="@drawable/card_background"
-            android:paddingHorizontal="@dimen/half_padding"
-            android:paddingVertical="@dimen/quarter_padding"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toStartOf="@id/tv_movie_rating"
-            app:layout_constraintStart_toEndOf="@id/tv_movie_year"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
-            tools:text="en"
-            />
-
-        <TextView
-            android:id="@+id/tv_movie_rating"
-            style="@style/HeaderStyle.SmallText"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/quarter_padding"
-            android:background="@drawable/card_background"
-            android:backgroundTint="@color/card_rating_background"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="@dimen/half_padding"
-            android:textColor="@color/black"
-            app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
-            app:layout_constraintBottom_toBottomOf="@id/tv_movie_language"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_movie_language"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
-            tools:text="8.0"
-            />
-
-        <TextView
-            android:id="@+id/tv_movie_genres"
-            style="@style/BodyStyle.SmallText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/regular_padding"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_language"
-            tools:text="Heartfelt · Romance · Sci-fi · Drama"
-            />
-
-        <Button
-            android:id="@+id/btn_watch_trailer"
-            style="@style/HeaderStyle.SmallText"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/one_and_half_padding"
-            android:background="@color/transparent"
-            android:foreground="@drawable/outlined_button_background"
-            android:text="@string/watch_trailer"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_genres"
-            />
+            app:behavior_fitToContents="true"
+            app:behavior_peekHeight="@dimen/bottomsheet_peek_height"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            android:id="@+id/cl_data_layout"
+            >
 
-        <TextView
-            android:id="@+id/tv_movie_plot_label"
-            style="@style/BodyStyle.SmallText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/one_and_half_padding"
-            android:text="@string/movie_plot"
-            android:textAllCaps="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_watch_trailer"
-            />
+            <TextView
+                android:id="@+id/tv_movie_title"
+                style="@style/HeaderStyle.LargeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Her"
+                />
 
-        <TextView
-            android:id="@+id/tv_movie_plot_value"
-            style="@style/BodyStyle.SmallText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_plot_label"
-            tools:text="In a near future, a lonely writer..."
-            />
+            <TextView
+                android:id="@+id/tv_movie_year"
+                style="@style/BodyStyle.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/quarter_padding"
+                android:background="@drawable/card_background"
+                android:backgroundTint="?attr/colorOnPrimary"
+                android:paddingHorizontal="@dimen/half_padding"
+                android:paddingVertical="@dimen/quarter_padding"
+                android:textColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toStartOf="@id/tv_movie_language"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
+                tools:text="2013"
+                />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_movie_language"
+                style="@style/BodyStyle.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/quarter_padding"
+                android:background="@drawable/card_background"
+                android:backgroundTint="?attr/colorOnPrimary"
+                android:paddingHorizontal="@dimen/half_padding"
+                android:paddingVertical="@dimen/quarter_padding"
+                android:textColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toStartOf="@id/tv_movie_rating"
+                app:layout_constraintStart_toEndOf="@id/tv_movie_year"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
+                tools:text="en"
+                />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <TextView
+                android:id="@+id/tv_movie_rating"
+                style="@style/HeaderStyle.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/quarter_padding"
+                android:background="@drawable/card_background"
+                android:backgroundTint="@color/card_rating_background"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/half_padding"
+                android:textColor="?attr/colorPrimary"
+                app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
+                android:drawableTint="?attr/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/tv_movie_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_movie_language"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
+                tools:text="8.0"
+                />
+
+            <TextView
+                android:id="@+id/tv_movie_genres"
+                style="@style/BodyStyle.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/regular_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_language"
+                tools:text="Heartfelt · Romance · Sci-fi · Drama"
+                />
+
+            <Button
+                android:id="@+id/btn_watch_trailer"
+                style="@style/HeaderStyle.SmallText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/one_and_half_padding"
+                android:background="@color/transparent"
+                android:foreground="@drawable/outlined_button_background"
+                android:text="@string/watch_trailer"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_genres"
+                />
+
+            <TextView
+                android:id="@+id/tv_movie_plot_label"
+                style="@style/BodyStyle.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/one_and_half_padding"
+                android:text="@string/movie_plot"
+                android:textAllCaps="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_watch_trailer"
+                />
+
+            <TextView
+                android:id="@+id/tv_movie_plot_value"
+                style="@style/BodyStyle.SmallText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_plot_label"
+                tools:text="In a near future, a lonely writer..."
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

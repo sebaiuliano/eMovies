@@ -8,87 +8,96 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment"
-        android:paddingStart="@dimen/one_and_half_padding"
-        tools:ignore="RtlSymmetry"
-        android:background="@color/black"
-        >
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/iv_logo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ic_logo"
-            />
-
-        <include
-            layout="@layout/layout_category"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/double_padding"
-            android:id="@+id/category_upcoming"
-            app:layout_constraintTop_toBottomOf="@id/iv_logo"
-            />
-
-        <include
-            layout="@layout/layout_category"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/one_and_half_padding"
-            android:id="@+id/category_top_rated"
-            app:layout_constraintTop_toBottomOf="@id/category_upcoming"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_category_recommended"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/category_top_rated"
-            android:layout_marginTop="@dimen/regular_padding"
-            />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rg_filters"
-            app:layout_constraintTop_toBottomOf="@id/tv_category_recommended"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            tools:context=".ui.home.HomeFragment"
+            android:paddingStart="@dimen/one_and_half_padding"
+            tools:ignore="RtlSymmetry"
+            android:background="?attr/colorPrimary"
             >
-            <RadioButton
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_filter_language"
-                android:background="@drawable/button_state_background"
-                android:button="@null"
-                android:checked="true"
+                android:id="@+id/iv_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_logo"
+                app:tint="?attr/colorOnPrimary"
                 />
 
-            <RadioButton
+            <include
+                layout="@layout/layout_category"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/double_padding"
+                android:id="@+id/category_upcoming"
+                app:layout_constraintTop_toBottomOf="@id/iv_logo"
+                />
+
+            <include
+                layout="@layout/layout_category"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/one_and_half_padding"
+                android:id="@+id/category_top_rated"
+                app:layout_constraintTop_toBottomOf="@id/category_upcoming"
+                />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_filter_year"
-                android:background="@drawable/button_state_background"
-                android:button="@null"
+                android:id="@+id/tv_category_recommended"
+                android:text="@string/recommended_for_you"
+                style="@style/HeaderStyle.MediumText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/category_top_rated"
+                android:layout_marginTop="@dimen/regular_padding"
                 />
-        </RadioGroup>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rv_category_recommended"
-            app:layout_constraintTop_toBottomOf="@id/rg_filters"
-            android:layout_marginEnd="@dimen/one_and_half_padding"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            />
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/group_filters"
+                app:layout_constraintTop_toBottomOf="@id/tv_category_recommended"
+                app:layout_constraintStart_toStartOf="parent"
+                app:selectionRequired="true"
+                app:singleSelection="true"
+                >
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_filter_language"
+                    android:checked="true"
+                    tools:text="En Español"
+                    />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_filter_year"
+                    tools:text="Lanzadas en 1993"
+                    />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_category_recommended"
+                app:layout_constraintTop_toBottomOf="@id/group_filters"
+                android:layout_marginEnd="@dimen/one_and_half_padding"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
