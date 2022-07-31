@@ -12,9 +12,9 @@ import com.bumptech.glide.Glide
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentDetailBinding
 import com.siuliano.emovies.extensions.showToolbar
+import com.siuliano.emovies.extensions.toStringWithDecimals
 import com.siuliano.emovies.model.movie.Movie
 import com.siuliano.emovies.ui.main.MainViewModel
-import com.siuliano.emovies.utils.DoubleUtils.toStringWithDecimals
 import com.siuliano.emovies.utils.StringUtils
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception

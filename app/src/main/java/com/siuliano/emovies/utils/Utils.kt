@@ -20,12 +20,7 @@ object DateUtils {
 }
 
 object StringUtils {
-    fun String.extractNumbersToInt() = this.filter { character -> character.isDigit() }.toIntOrNull() ?: 0
     fun getThumbnailUrl(path: String) = getImageUrl(Configuration.smallSize, path)
     fun getPosterUrl(path: String) = getImageUrl(Configuration.largeSize, path)
     private fun getImageUrl(size: String, path: String) = "${Configuration.secureBaseUrl}/$size/$path"
-}
-
-object DoubleUtils {
-    fun Double.toStringWithDecimals(decimalPlaces: Int = 2) = String.format("%.${decimalPlaces}f", this)
 }

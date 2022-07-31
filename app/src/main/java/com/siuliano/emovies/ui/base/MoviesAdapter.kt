@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.siuliano.emovies.databinding.ItemMovieBinding
 import com.siuliano.emovies.model.movie.Movie
 import com.siuliano.emovies.ui.home.OnItemClickListener
-import com.siuliano.emovies.utils.StringUtils
+import com.siuliano.emovies.utils.StringUtils.getThumbnailUrl
 
 class MoviesAdapter(
     private val clickListener: OnItemClickListener
@@ -45,7 +45,7 @@ class MovieViewHolder(
     fun bind(movie: Movie) {
         if (movie.posterPath != null) {
             Glide.with(itemView.context)
-                .load(StringUtils.getThumbnailUrl(movie.posterPath))
+                .load(getThumbnailUrl(movie.posterPath))
                 .into(binding.ivMovie)
         }
 

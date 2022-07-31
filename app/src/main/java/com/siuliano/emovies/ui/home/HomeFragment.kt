@@ -61,8 +61,8 @@ class HomeFragment : Fragment() {
     private fun setFilterButtons() {
         binding.btnFilterLanguage.text = resources.getString(R.string.movie_language_filter, Locale.getDefault().displayLanguage)
         binding.btnFilterYear.text = resources.getString(R.string.movie_year_filter, 1993)
-        binding.groupFilters.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            when(group.checkedButtonId) {
+        binding.groupFilters.setOnCheckedChangeListener { radioGroup, i ->
+            when(i) {
                 R.id.btn_filter_language -> {
                     viewModel.selectRecommendation(Filters.LANGUAGE)
                 }

@@ -1,10 +1,10 @@
 package com.siuliano.emovies.repository
 
+import com.siuliano.emovies.extensions.extractNumbersToInt
 import com.siuliano.emovies.model.configuration.Configuration
 import com.siuliano.emovies.model.movie.Movie
 import com.siuliano.emovies.model.movie.toMovie
 import com.siuliano.emovies.network.endpoint.TMDbApi
-import com.siuliano.emovies.utils.StringUtils.extractNumbersToInt
 
 interface MovieRepository {
     suspend fun fetchConfiguration()
