@@ -27,5 +27,5 @@ object StringUtils {
 }
 
 object DoubleUtils {
-    fun Double.toStringWithDecimals(decimalPlaces: Int = 2) = String.format("%.$decimalPlaces", this)
+    fun Double.toStringWithDecimals(decimalPlaces: Int = 2) = String.format("%.${decimalPlaces}f", this)
 }

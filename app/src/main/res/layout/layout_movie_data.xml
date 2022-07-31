@@ -18,12 +18,18 @@
             <TextView
                 android:id="@+id/tv_movie_title"
                 style="@style/HeaderStyle.LargeText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Her"
+                android:gravity="center_horizontal"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeMaxTextSize="40sp"
+                app:autoSizeStepGranularity="2sp"
                 />
 
             <TextView

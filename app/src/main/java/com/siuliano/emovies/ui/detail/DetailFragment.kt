@@ -36,9 +36,11 @@ class DetailFragment : Fragment() {
     private fun setObservers() {
         viewModel.selectedMovie.observe(viewLifecycleOwner) {
             setMovie(it)
-            Glide.with(requireContext())
-                .load(StringUtils.getThumbnailUrl(it.posterPath))
-                .into(binding.ivBackground)
+            if (it.posterPath != null) {
+                Glide.with(requireContext())
+                    .load(StringUtils.getPosterUrl(it.posterPath))
+                    .into(binding.ivBackground)
+            }
         }
     }
 

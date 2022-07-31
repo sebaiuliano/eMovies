@@ -3,13 +3,10 @@ package com.siuliano.emovies.ui.main
 import androidx.lifecycle.*
 import com.siuliano.emovies.model.catalog.Filters
 import com.siuliano.emovies.model.movie.Movie
-import com.siuliano.emovies.model.movie.MovieMinimalData
 import com.siuliano.emovies.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.intellij.lang.annotations.Language
 import java.util.*
 
 class MainViewModel(
@@ -20,31 +17,31 @@ class MainViewModel(
     val selectedMovie : MutableLiveData<Movie>
         get() = _selectedMovie
 
-    private val _upcomingMoviesLiveData = MutableLiveData<List<MovieMinimalData>>()
-    val upcomingMoviesLiveData: List<MovieMinimalData>
+    private val _upcomingMoviesLiveData = MutableLiveData<List<Movie>>()
+    val upcomingMovies: List<Movie>
         get() = _upcomingMoviesLiveData.value ?: emptyList()
 
-    private val _topRatedMoviesLiveData = MutableLiveData<List<MovieMinimalData>>()
-    val topRatedMovies: List<MovieMinimalData>
+    private val _topRatedMoviesLiveData = MutableLiveData<List<Movie>>()
+    val topRatedMovies: List<Movie>
         get() = _topRatedMoviesLiveData.value ?: emptyList()
 
-    private val _recommendedMoviesLiveData = MutableLiveData<List<MovieMinimalData>>()
-    val recommendedMovies: List<MovieMinimalData>
+    private val _recommendedMoviesLiveData = MutableLiveData<List<Movie>>()
+    val recommendedMovies: List<Movie>
         get() = _recommendedMoviesLiveData.value ?: emptyList()
 
-    private val _moviesByLanguageLiveData = MutableLiveData<List<MovieMinimalData>>()
-    private val moviesByLanguageMovies: List<MovieMinimalData>
+    private val _moviesByLanguageLiveData = MutableLiveData<List<Movie>>()
+    private val moviesByLanguageMovies: List<Movie>
         get() = _moviesByLanguageLiveData.value ?: emptyList()
 
-    private val _moviesByReleaseYearLiveData = MutableLiveData<List<MovieMinimalData>>()
-    private val moviesByReleaseYearLiveData: List<MovieMinimalData>
+    private val _moviesByReleaseYearLiveData = MutableLiveData<List<Movie>>()
+    private val moviesByReleaseYearLiveData: List<Movie>
         get() = _moviesByReleaseYearLiveData.value ?: emptyList()
 
     val liveDataMerger =
         MediatorLiveData<Triple<
-                List<MovieMinimalData>,
-                List<MovieMinimalData>,
-                List<MovieMinimalData>,
+                List<Movie>,
+                List<Movie>,
+                List<Movie>,
                 >>()
 
     init {
@@ -65,7 +62,7 @@ class MainViewModel(
         }
     }
 
-    fun select(movie: MovieMinimalData) = getMovieDetails(movie.id)
+    fun select(movie: Movie) = getMovieDetails(movie.id)
 
     fun selectRecommendation(recommendationType: Filters) {
         when (recommendationType) {
@@ -76,7 +73,12 @@ class MainViewModel(
 
     private fun getMovieDetails(movieId: Int) {
         viewModelScope.launch {
-            _selectedMovie.postValue(movieRepository.getMovieDetails(movieId))
+            _selectedMovie.postValue(
+                movieRepository.getMovieDetails(movieId) ?:
+                upcomingMovies.find { it.id == movieId } ?:
+                topRatedMovies.find { it.id == movieId } ?:
+                recommendedMovies.find { it.id == movieId }
+            )
         }
     }
 

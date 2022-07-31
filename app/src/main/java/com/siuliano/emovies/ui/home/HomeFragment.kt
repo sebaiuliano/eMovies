@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.FragmentHomeBinding
 import com.siuliano.emovies.extensions.showToolbar
 import com.siuliano.emovies.model.catalog.Filters
+import com.siuliano.emovies.model.movie.Movie
 import com.siuliano.emovies.ui.base.MoviesAdapter
 import com.siuliano.emovies.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -22,6 +24,17 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by sharedViewModel()
 
+    private val clickListener = object : OnItemClickListener {
+        override fun onItemClick(movie: Movie) {
+            viewModel.select(movie)
+            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+        }
+    }
+
+    private val upcomingAdapter = MoviesAdapter(clickListener)
+    private val topRatedAdapter = MoviesAdapter(clickListener)
+    private val recommendedAdapter = MoviesAdapter(clickListener)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,19 +44,17 @@ class HomeFragment : Fragment() {
         setObservers()
         showToolbar(false)
         viewModel.selectRecommendation(Filters.LANGUAGE)
-//        binding.btn.setOnClickListener {
-//            findNavController().navigate(R.id.detailFragment)
-        //TODO change this
-//            viewModel.select(152601)
-//        }
         setFilterButtons()
+        initializeRecyclerViews()
 
         return binding.root
     }
 
     private fun setObservers() {
         viewModel.liveDataMerger.observe(viewLifecycleOwner) {
-            initializeRecyclerViews()
+            setTopRatedMovies()
+            setUpcomingMovies()
+            setRecommendedMovies()
         }
     }
 
@@ -69,20 +80,36 @@ class HomeFragment : Fragment() {
     }
 
     private fun initializeTopRated() {
-        val adapter = MoviesAdapter()
         binding.categoryTopRated.tvCategoryTitle.text = resources.getString(R.string.top_rated)
-        binding.categoryTopRated.rvMovies.adapter = adapter
-        adapter.setMovies(viewModel.topRatedMovies)
+        binding.categoryTopRated.rvMovies.adapter = topRatedAdapter
+        setTopRatedMovies()
     }
+
+    private fun setTopRatedMovies() {
+        topRatedAdapter.setMovies(viewModel.topRatedMovies)
+    }
+
     private fun initializeUpcoming() {
-        val adapter = MoviesAdapter()
         binding.categoryUpcoming.tvCategoryTitle.text = resources.getString(R.string.upcoming)
-        binding.categoryUpcoming.rvMovies.adapter = adapter
-        adapter.setMovies(viewModel.upcomingMovies)
+        binding.categoryUpcoming.rvMovies.adapter = upcomingAdapter
+        setUpcomingMovies()
     }
+
+    private fun setUpcomingMovies() {
+        upcomingAdapter.setMovies(viewModel.upcomingMovies)
+    }
+
     private fun initializeRecommended() {
-        val adapter = MoviesAdapter()
-        binding.rvCategoryRecommended.adapter = adapter
-        adapter.setMovies(viewModel.recommendedMovies.take(RECOMMENDED_MOVIES_QUANTITY))
+        binding.rvCategoryRecommended.adapter = recommendedAdapter
+        setRecommendedMovies()
     }
+
+    private fun setRecommendedMovies() {
+        recommendedAdapter.setMovies(viewModel.recommendedMovies.take(RECOMMENDED_MOVIES_QUANTITY))
+    }
+
+}
+
+interface OnItemClickListener {
+    fun onItemClick(movie: Movie)
 }

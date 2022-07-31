@@ -3,7 +3,6 @@ package com.siuliano.emovies.model.configuration
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-//TODO create converter to avoid this class
 @JsonClass(generateAdapter = true)
 data class ConfigurationDTO(
     val images: ImagesConfigurationDTO
