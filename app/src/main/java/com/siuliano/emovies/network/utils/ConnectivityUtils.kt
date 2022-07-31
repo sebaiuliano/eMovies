@@ -3,7 +3,6 @@ package com.siuliano.emovies.network.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.wifi.WifiManager
 
 class ConnectivityUtils(
     applicationContext: Context

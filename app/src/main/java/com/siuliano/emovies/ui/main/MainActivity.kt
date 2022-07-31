@@ -2,11 +2,8 @@ package com.siuliano.emovies.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.siuliano.emovies.R
 import com.siuliano.emovies.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
