@@ -25,6 +25,7 @@ android {
                     "\\app\\src\\main\\java\\com\\siuliano\\emovies\\secure\\emovies_creds.properties"
             )))
             buildConfigField('String', 'BASE_URL', prop['BASE_URL'])
+            buildConfigField('String', 'API_KEY', prop['API_KEY'])
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
