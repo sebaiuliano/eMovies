@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <data>
@@ -10,102 +10,104 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.home.HomeFragment"
-            android:paddingStart="@dimen/one_and_half_padding"
-            tools:ignore="RtlSymmetry"
             android:background="?attr/colorPrimary"
+            android:paddingStart="@dimen/one_and_half_padding"
+            tools:context=".ui.home.HomeFragment"
+            tools:ignore="RtlSymmetry"
             >
 
             <ImageView
+                android:id="@+id/iv_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/iv_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_logo"
-                app:tint="?attr/colorOnPrimary"
                 android:layout_marginTop="@dimen/double_padding"
+                android:src="@drawable/ic_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorOnPrimary"
                 />
 
             <include
-                layout="@layout/layout_category"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/double_padding"
                 android:id="@+id/category_upcoming"
+                layout="@layout/layout_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/double_padding"
                 app:layout_constraintTop_toBottomOf="@id/iv_logo"
                 />
 
             <include
-                layout="@layout/layout_category"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
                 android:id="@+id/category_top_rated"
+                layout="@layout/layout_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/category_upcoming"
                 />
 
             <TextView
+                android:id="@+id/tv_category_recommended"
+                style="@style/HeaderStyle.MediumText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_category_recommended"
                 android:text="@string/recommended_for_you"
-                style="@style/HeaderStyle.MediumText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/category_top_rated"
                 />
 
             <RadioGroup
+                android:id="@+id/group_filters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/group_filters"
-                app:layout_constraintTop_toBottomOf="@id/tv_category_recommended"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/regular_padding"
                 android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_category_recommended"
                 >
+
                 <RadioButton
+                    android:id="@+id/btn_filter_language"
+                    style="@style/BodyStyle.SmallText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btn_filter_language"
-                    android:checked="true"
-                    tools:text="En Español"
+                    android:layout_marginEnd="@dimen/half_padding"
                     android:background="@drawable/button_state_background"
                     android:button="@null"
-                    android:paddingVertical="@dimen/half_padding"
+                    android:checked="true"
                     android:paddingHorizontal="@dimen/regular_padding"
+                    android:paddingVertical="@dimen/half_padding"
                     android:textColor="@drawable/button_state_text_color"
-                    style="@style/BodyStyle.SmallText"
-                    android:layout_marginEnd="@dimen/half_padding"
+                    tools:text="En Español"
                     />
 
                 <RadioButton
+                    android:id="@+id/btn_filter_year"
+                    style="@style/BodyStyle.SmallText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btn_filter_year"
-                    tools:text="Lanzadas en 1993"
                     android:background="@drawable/button_state_background"
                     android:button="@null"
-                    android:paddingVertical="@dimen/half_padding"
                     android:paddingHorizontal="@dimen/regular_padding"
+                    android:paddingVertical="@dimen/half_padding"
                     android:textColor="@drawable/button_state_text_color"
-                    style="@style/BodyStyle.SmallText"
+                    tools:text="Lanzadas en 1993"
                     />
             </RadioGroup>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_category_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_category_recommended"
-                app:layout_constraintTop_toBottomOf="@id/group_filters"
                 android:layout_marginTop="@dimen/one_and_half_padding"
                 android:layout_marginEnd="@dimen/one_and_half_padding"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/group_filters"
                 app:spanCount="2"
                 />
 

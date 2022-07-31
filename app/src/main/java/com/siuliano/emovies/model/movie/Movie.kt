@@ -21,7 +21,7 @@ data class Movie(
 )
 
 @JsonClass(generateAdapter = true)
-data class PaginatedMovieList(
+data class MovieListDTO(
     val page: Int,
     val results: List<MovieDTO>,
     @Json(name = "total_pages")
@@ -55,23 +55,4 @@ fun MovieDTO.toMovie() = Movie(
     title = title,
     voteAverage = voteAverage,
     videos = Videos(emptyList())
-)
-
-@JsonClass(generateAdapter = true)
-data class Genre(
-    val id: Int,
-    val name: String
-)
-
-@JsonClass(generateAdapter = true)
-data class Videos(
-    val results: List<Video>
-)
-
-@JsonClass(generateAdapter = true)
-data class Video(
-    val key: String,
-    val site: String,
-    val type: String,
-    val official: Boolean
 )

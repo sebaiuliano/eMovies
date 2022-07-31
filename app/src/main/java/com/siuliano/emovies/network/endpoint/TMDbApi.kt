@@ -1,10 +1,9 @@
 package com.siuliano.emovies.network.endpoint
 
 import com.siuliano.emovies.BuildConfig
-import com.siuliano.emovies.model.configuration.Configuration
 import com.siuliano.emovies.model.configuration.ConfigurationDTO
 import com.siuliano.emovies.model.movie.Movie
-import com.siuliano.emovies.model.movie.PaginatedMovieList
+import com.siuliano.emovies.model.movie.MovieListDTO
 import com.siuliano.emovies.utils.DateUtils
 import retrofit2.Response
 import retrofit2.http.GET
@@ -25,7 +24,7 @@ interface TMDbApi {
         apiKey: String = BuildConfig.API_KEY,
         @Query("page")
         page: Int = 1
-    ): Response<PaginatedMovieList>
+    ): Response<MovieListDTO>
 
     @GET("/3/discover/movie")
     suspend fun getUpcomingMovies(
@@ -35,7 +34,7 @@ interface TMDbApi {
         sortBy: String = "primary_release_date.asc",
         @Query("primary_release_date.gte")
         tomorrow: String = DateUtils.getTomorrowDate()
-    ): Response<PaginatedMovieList>
+    ): Response<MovieListDTO>
 
     @GET("/3/discover/movie")
     suspend fun getRecommendedMoviesByYear(
@@ -45,7 +44,7 @@ interface TMDbApi {
         sortBy: String = "popularity.desc",
         @Query("primary_release_year")
         year: Int
-    ): Response<PaginatedMovieList>
+    ): Response<MovieListDTO>
 
     @GET("/3/discover/movie")
     suspend fun getRecommendedMoviesByLanguage(
@@ -55,7 +54,7 @@ interface TMDbApi {
         sortBy: String = "popularity.desc",
         @Query("language")
         language: String
-    ): Response<PaginatedMovieList>
+    ): Response<MovieListDTO>
 
     @GET("/3/movie/{movieId}")
     suspend fun getMovieDetails(

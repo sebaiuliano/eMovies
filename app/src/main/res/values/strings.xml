@@ -12,5 +12,4 @@
 
     <string name="movie_language_filter">En %1$s</string>
     <string name="movie_year_filter">Lanzadas en %1$d</string>
-
 </resources>
