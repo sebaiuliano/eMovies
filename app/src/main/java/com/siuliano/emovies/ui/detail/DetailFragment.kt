@@ -47,7 +47,7 @@ class DetailFragment : Fragment() {
     private fun setMovie(movie: Movie) {
         with(binding.layoutData) {
             tvMovieTitle.text = movie.title
-            tvMovieYear.text = movie.releaseDate.substring(0, 4)
+            tvMovieYear.text = movie.releaseDate.takeIf { it.isNotEmpty() }?.substring(0, 4) ?: ""
             tvMovieLanguage.text = movie.originalLanguage
             tvMovieRating.text = movie.voteAverage.toStringWithDecimals()
             var genreString = ""
