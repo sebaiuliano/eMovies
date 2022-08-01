@@ -25,7 +25,8 @@ buildscript {
             'glide'                  : '4.13.2',
             'fragment'               : '1.5.1',
             'logging_interceptor'    : '4.9.0',
-            'navigation'             : '2.5.1'
+            'navigation'             : '2.5.1',
+            'firebase_crashlytics'   : '18.2.12'
     ]
     repositories {
         google()
@@ -35,6 +36,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:7.0.4"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}")
+        classpath 'com.google.gms:google-services:4.3.13'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "98032033266",
+    "project_id": "emovies-358000",
+    "storage_bucket": "emovies-358000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98032033266:android:ef6879f17186c43b955f6b",
+        "android_client_info": {
+          "package_name": "com.siuliano.emovies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98032033266-0bkhl4b6j5ab6b903god6ien67c7rt8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWqDfNy9SNf3C6w-oaFj1otG-C8N9ZWfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98032033266-0bkhl4b6j5ab6b903god6ien67c7rt8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
