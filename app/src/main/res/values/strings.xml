@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">eMovies</string>
-    <string name="home_fragment">Home Fragment</string>
-    <string name="detail_fragment">Detail Fragment</string>
-    <string name="hello_blank_fragment">Splash Fragment</string>
+    <string name="home_fragment">HomeFragment</string>
+    <string name="detail_fragment">DetailFragment</string>
+    <string name="hello_blank_fragment">SplashFragment</string>
 
     <string name="upcoming">Próximos estrenos</string>
     <string name="top_rated">Tendencia</string>

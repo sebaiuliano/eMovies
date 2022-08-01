@@ -18,7 +18,7 @@ import com.siuliano.emovies.extensions.showToolbar
 import com.siuliano.emovies.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-const val SPLASH_ANIMATION_DELAY = 1000L
+const val SPLASH_ANIMATION_DELAY = 1500L
 
 class SplashFragment : Fragment() {
     private val viewModel: MainViewModel by sharedViewModel()
@@ -31,17 +31,11 @@ class SplashFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
         showToolbar(false)
         animateSplash()
-        setObservers()
         viewModel.getInitialData()
+        Handler(Looper.getMainLooper()).postDelayed({
+            goHomeFragment()
+        }, SPLASH_ANIMATION_DELAY)
         return binding.root
-    }
-
-    private fun setObservers() {
-        viewModel.liveDataMerger.observe(viewLifecycleOwner) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                goHomeFragment()
-            }, SPLASH_ANIMATION_DELAY)
-        }
     }
 
     private fun goHomeFragment() {

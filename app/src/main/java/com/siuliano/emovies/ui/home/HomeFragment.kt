@@ -43,7 +43,6 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setObservers()
         showToolbar(false)
-        viewModel.selectRecommendation(Filters.LANGUAGE)
         setFilterButtons()
         initializeRecyclerViews()
 
@@ -55,6 +54,16 @@ class HomeFragment : Fragment() {
             setTopRatedMovies()
             setUpcomingMovies()
             setRecommendedMovies()
+        }
+        viewModel.moviesByLanguageLiveData.observe(viewLifecycleOwner) {
+            if (binding.groupFilters.checkedRadioButtonId == R.id.btn_filter_language) {
+                viewModel.selectRecommendation(Filters.LANGUAGE)
+            }
+        }
+        viewModel.moviesByReleaseYearLiveData.observe(viewLifecycleOwner) {
+            if (binding.groupFilters.checkedRadioButtonId == R.id.btn_filter_year) {
+                viewModel.selectRecommendation(Filters.YEAR)
+            }
         }
     }
 
