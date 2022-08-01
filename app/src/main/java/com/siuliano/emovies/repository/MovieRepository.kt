@@ -33,9 +33,9 @@ class MovieRepositoryImpl(
         val response = tmdbApi.getTopRatedMovies().body()
         if (response != null) {
             list.addAll(response.results.map { it.toMovie() })
-            for (i in (response.page + 1)..10) {
-                list.addAll(tmdbApi.getTopRatedMovies(page = i).body()?.results?.map{ it.toMovie() }.orEmpty())
-            }
+//            for (i in (response.page + 1)..10) {
+//                list.addAll(tmdbApi.getTopRatedMovies(page = i).body()?.results?.map{ it.toMovie() }.orEmpty())
+//            }
         }
         return list
     }
