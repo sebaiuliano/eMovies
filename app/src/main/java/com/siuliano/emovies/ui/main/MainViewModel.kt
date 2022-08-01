@@ -29,13 +29,13 @@ class MainViewModel(
     val recommendedMovies: List<Movie>
         get() = _recommendedMoviesLiveData.value ?: emptyList()
 
-    private val _moviesByLanguageLiveData = MutableLiveData<List<Movie>>()
+    val moviesByLanguageLiveData = MutableLiveData<List<Movie>>()
     private val moviesByLanguageMovies: List<Movie>
-        get() = _moviesByLanguageLiveData.value ?: emptyList()
+        get() = moviesByLanguageLiveData.value ?: emptyList()
 
-    private val _moviesByReleaseYearLiveData = MutableLiveData<List<Movie>>()
-    private val moviesByReleaseYearLiveData: List<Movie>
-        get() = _moviesByReleaseYearLiveData.value ?: emptyList()
+    val moviesByReleaseYearLiveData = MutableLiveData<List<Movie>>()
+    private val moviesByReleaseYear: List<Movie>
+        get() = moviesByReleaseYearLiveData.value ?: emptyList()
 
     val liveDataMerger =
         MediatorLiveData<Triple<
@@ -66,7 +66,7 @@ class MainViewModel(
 
     fun selectRecommendation(recommendationType: Filters) {
         when (recommendationType) {
-            Filters.YEAR -> { _recommendedMoviesLiveData.postValue(moviesByReleaseYearLiveData) }
+            Filters.YEAR -> { _recommendedMoviesLiveData.postValue(moviesByReleaseYear) }
             Filters.LANGUAGE -> { _recommendedMoviesLiveData.postValue(moviesByLanguageMovies) }
         }
     }
@@ -100,7 +100,7 @@ class MainViewModel(
 
     private fun getMoviesByLanguage(language: String) {
         viewModelScope.launch {
-            _moviesByLanguageLiveData.postValue(
+            moviesByLanguageLiveData.postValue(
                 movieRepository.getMoviesByLanguage(language)
             )
         }
@@ -108,7 +108,7 @@ class MainViewModel(
 
     private fun getMoviesByReleaseYear(year: Int) {
         viewModelScope.launch {
-            _moviesByReleaseYearLiveData.postValue(
+            moviesByReleaseYearLiveData.postValue(
                 movieRepository.getMoviesByReleaseYear(year)
             )
         }
